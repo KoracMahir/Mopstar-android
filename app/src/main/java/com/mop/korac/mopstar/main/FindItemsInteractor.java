@@ -25,8 +25,7 @@ public class FindItemsInteractor {
                 "Item 6",
                 "Item 7",
                 "Item 8",
-                "Item 9",
-                "Item 10"
+                "Item 9"
         );
     }
 }
