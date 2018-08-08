@@ -8,7 +8,6 @@
     <string name="password">password</string>
     <string name="log_in">Log in</string>
     <string name="title_activity_main">MOPSTAR</string>
-    <string name="username_error">Username cannot be empty</string>
-    <string name="password_error">Password cannot be empty</string>
+    <string name="empty_error">Cannot be empty</string>
 
 </resources>
