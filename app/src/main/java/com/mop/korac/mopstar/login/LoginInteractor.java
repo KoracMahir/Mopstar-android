@@ -11,6 +11,7 @@ public class LoginInteractor {
         void onPasswordError();
 
         void onSuccess();
+
     }
 
     public void login(final String username, final String password, final OnLoginFinishedListener listener) {
@@ -27,4 +28,5 @@ public class LoginInteractor {
             listener.onSuccess();
         }, 2000);
     }
+
 }

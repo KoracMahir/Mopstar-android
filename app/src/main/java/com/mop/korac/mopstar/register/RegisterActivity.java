@@ -1,5 +1,4 @@
-
-package com.mop.korac.mopstar.login;
+package com.mop.korac.mopstar.register;
 
 
 import android.content.Intent;
@@ -11,30 +10,40 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import com.mop.korac.mopstar.R;
+import com.mop.korac.mopstar.login.LoginActivity;
 import com.mop.korac.mopstar.main.MainActivity;
-import com.mop.korac.mopstar.register.RegisterActivity;
 
-public class LoginActivity extends AppCompatActivity implements LoginView {
-
+public class RegisterActivity extends AppCompatActivity implements RegisterView {
+    Button button;
     private ProgressBar progressBar;
+    private EditText name;
     private EditText username;
     private EditText password;
-    private LoginPresenter presenter;
+    private RegisterPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_register);
 
         progressBar = findViewById(R.id.progress);
+        name = findViewById(R.id.name);
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
         findViewById(R.id.button).setOnClickListener(v -> validateCredentials());
-        presenter = new LoginPresenter(this, new LoginInteractor());
-        final Button button = findViewById(R.id.reg);
+
+        presenter = new RegisterPresenter(this, new RegisterIntegrator());
+
+        button = findViewById(R.id.log);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                SignUp();
+                Login();
+            }
+        });
+        button = findViewById(R.id.close);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Login();
             }
         });
     }
@@ -56,6 +65,11 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     }
 
     @Override
+    public void NameError() {
+        name.setError(getString(R.string.empty_error));
+    }
+
+    @Override
     public void setUsernameError() {
         username.setError(getString(R.string.empty_error));
     }
@@ -70,14 +84,18 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         startActivity(new Intent(this, MainActivity.class));
         finish();
     }
-
     @Override
-    public void SignUp() {
-        startActivity(new Intent(this, RegisterActivity.class));
+    public void Login() {
+        startActivity(new Intent(this, LoginActivity.class));
+        finish();
+    }
+    @Override
+    public void Close() {
+        startActivity(new Intent(this, LoginActivity.class));
         finish();
     }
 
     private void validateCredentials() {
-        presenter.validateCredentials(username.getText().toString(), password.getText().toString());
+        presenter.validateCredentials(name.getText().toString(),username.getText().toString(), password.getText().toString());
     }
 }

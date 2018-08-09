@@ -2,8 +2,6 @@ package com.mop.korac.mopstar.login;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 public class LoginActivityTest {
 
     @Test
@@ -32,5 +30,9 @@ public class LoginActivityTest {
 
     @Test
     public void navigateToHome() {
+    }
+
+    @Test
+    public void signUp() {
     }
 }
