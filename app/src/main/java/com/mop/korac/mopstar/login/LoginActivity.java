@@ -50,12 +50,12 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
     @Override
     public void setUsernameError() {
-        username.setError(getString(R.string.username_error));
+        username.setError(getString(R.string.empty_error));
     }
 
     @Override
     public void setPasswordError() {
-        password.setError(getString(R.string.password_error));
+        password.setError(getString(R.string.empty_error));
     }
 
     @Override
