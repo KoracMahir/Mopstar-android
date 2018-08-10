@@ -12,7 +12,7 @@ public class FindItemsInteractor {
     }
 
     public void findItems(final OnFinishedListener listener) {
-        new Handler().postDelayed(() -> listener.onFinished(createArrayList()), 2000);
+        new Handler().postDelayed(() -> listener.onFinished(createArrayList()), 20);
     }
 
     private List<String> createArrayList() {

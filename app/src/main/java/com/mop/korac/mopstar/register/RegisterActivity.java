@@ -9,11 +9,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
+import com.mop.korac.mopstar.BaseActivity;
 import com.mop.korac.mopstar.R;
 import com.mop.korac.mopstar.login.LoginActivity;
 import com.mop.korac.mopstar.main.MainActivity;
 
-public class RegisterActivity extends AppCompatActivity implements RegisterView {
+public class RegisterActivity extends BaseActivity implements RegisterView {
     Button button;
     private ProgressBar progressBar;
     private EditText name;
@@ -22,7 +23,11 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
     private RegisterPresenter presenter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onAttach(){
+        super.onAttach();
+    }
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 

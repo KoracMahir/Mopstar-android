@@ -9,7 +9,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
+        <fragment android:name="com.mop.korac.mopstar.login.LoginFragment"
+            android:id="@+id/headlines_fragment"
+            android:layout_weight="1"
+            android:layout_width="1dp"
+            android:layout_height="match_parent" />
 
         <ImageView
             android:id="@+id/imageView"

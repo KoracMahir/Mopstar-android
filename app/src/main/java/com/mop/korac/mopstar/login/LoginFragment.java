@@ -1,20 +1,20 @@
-
 package com.mop.korac.mopstar.login;
 
-
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
-import com.mop.korac.mopstar.BaseActivity;
 import com.mop.korac.mopstar.R;
 import com.mop.korac.mopstar.main.MainActivity;
 import com.mop.korac.mopstar.register.RegisterActivity;
 
-public class LoginActivity extends BaseActivity{
+public class LoginFragment extends Fragment implements LoginView{
 
     private ProgressBar progressBar;
     private EditText username;
@@ -22,20 +22,16 @@ public class LoginActivity extends BaseActivity{
     private LoginPresenter presenter;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        presenter = new LoginPresenter(this, new LoginInteractor());
+    }
 
-        progressBar = findViewById(R.id.progress);
-        username = findViewById(R.id.username);
-        password = findViewById(R.id.password);
-        findViewById(R.id.button).setOnClickListener(v -> validateCredentials());
-        final Button button = findViewById(R.id.reg);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                SignUp();
-            }
-        });
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.activity_login, container, false);
     }
 
     @Override
@@ -43,7 +39,6 @@ public class LoginActivity extends BaseActivity{
         presenter.onDestroy();
         super.onDestroy();
     }
-
     @Override
     public void showProgress() {
         progressBar.setVisibility(View.VISIBLE);
@@ -66,14 +61,12 @@ public class LoginActivity extends BaseActivity{
 
     @Override
     public void navigateToHome() {
-        startActivity(new Intent(this, MainActivity.class));
-        finish();
+        startActivity(new Intent(LoginFragment.this, MainActivity.class));
     }
 
     @Override
     public void SignUp() {
         startActivity(new Intent(this, RegisterActivity.class));
-        finish();
     }
 
     private void validateCredentials() {

@@ -26,7 +26,7 @@ public class LoginInteractor {
                 return;
             }
             listener.onSuccess();
-        }, 2000);
+        }, 20);
     }
 
 }
