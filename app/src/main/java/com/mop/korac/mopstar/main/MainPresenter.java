@@ -5,19 +5,15 @@ import java.util.List;
 class MainPresenter {
 
     private MainView mainView;
-    private FindItemsInteractor findItemsInteractor;
 
-    MainPresenter(MainView mainView, FindItemsInteractor findItemsInteractor) {
+    MainPresenter(MainView mainView) {
         this.mainView = mainView;
-        this.findItemsInteractor = findItemsInteractor;
     }
 
     void onResume() {
         if (mainView != null) {
-            mainView.showProgress();
         }
 
-        findItemsInteractor.findItems(this::onFinished);
     }
 
     void onItemClicked(String item) {
@@ -32,8 +28,6 @@ class MainPresenter {
 
     public void onFinished(List<String> items) {
         if (mainView != null) {
-            mainView.setItems(items);
-            mainView.hideProgress();
         }
     }
 

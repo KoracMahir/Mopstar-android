@@ -1,6 +1,6 @@
-package com.mop.korac.mopstar.login;
+package com.mop.korac.mopstar.register;
 
-public interface LoginView {
+public interface RegisterView {
     void showProgress();
 
     void hideProgress();
@@ -11,5 +11,5 @@ public interface LoginView {
 
     void navigateToHome();
 
-    void SignUp();
+    void Login();
 }

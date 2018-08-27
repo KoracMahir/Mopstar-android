@@ -1,12 +1,8 @@
-
-package com.mop.korac.mopstar.login;
-
+package com.mop.korac.mopstar.register;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,47 +11,51 @@ import android.widget.Toast;
 
 import com.mop.korac.mopstar.R;
 import com.mop.korac.mopstar.interfacee.ApiInterface;
+import com.mop.korac.mopstar.login.LoginActivity;
+import com.mop.korac.mopstar.login.LoginInteractor;
+import com.mop.korac.mopstar.login.LoginPresenter;
+import com.mop.korac.mopstar.login.LoginView;
 import com.mop.korac.mopstar.main.MainActivity;
 import com.mop.korac.mopstar.models.TokenModel;
 import com.mop.korac.mopstar.models.UserModel;
-import com.mop.korac.mopstar.register.RegisterActivity;
 import com.mop.korac.mopstar.service.ApiClient;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LoginActivity extends AppCompatActivity implements LoginView {
+public class RegisterActivity extends AppCompatActivity implements RegisterView {
 
     private ProgressBar progressBar;
     private EditText username;
     private EditText password;
-    private LoginPresenter presenter;
+    private RegisterPresenter presenter;
 
     Button button;
-    Button reg;
+    Button log;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_register);
 
         progressBar = findViewById(R.id.progress);
 
         button = findViewById(R.id.button);
-        reg = findViewById(R.id.reg);
+        log = findViewById(R.id.log);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 navigateToHome();
             }
         });
-        reg.setOnClickListener(new View.OnClickListener() {
+        log.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent barIntent = new Intent(getApplicationContext(), RegisterActivity.class);
+                Intent barIntent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(barIntent);
             }
         });
 
-        presenter = new LoginPresenter(this, new LoginInteractor());
+        presenter = new RegisterPresenter(this, new RegisterInteractor());
     }
 
     @Override
@@ -87,32 +87,27 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
     @Override
     public void navigateToHome() {
-        username = findViewById(R.id.username);
-        password = findViewById(R.id.password);
+        username = findViewById(R.id.name);
+        password = findViewById(R.id.pass);
         ApiInterface apiInterface = ApiClient.GetApiClient().create(ApiInterface.class);
-        apiInterface.loginWithCredentials(new UserModel(username.getText().toString(), password.getText().toString())).enqueue(new Callback<TokenModel>() {
+        apiInterface.registerWithCredentials(new UserModel(username.getText().toString(), password.getText().toString())).enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(Call<TokenModel> call, Response<TokenModel> response) {
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if(response.isSuccessful()){
-                    String token = response.body().getTokenString();
                     Intent barIntent = new Intent(getApplicationContext(), MainActivity.class);
-                    SharedPreferences preferences = getSharedPreferences("myPrefs", MODE_PRIVATE);
-                    preferences.edit().putString("token", token).commit();
                     startActivity(barIntent);
-                }else{
-                    Toast.makeText(LoginActivity.this, "Wrong Username or Password", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<TokenModel> call, Throwable t) {
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
 
             }
         });
     }
     @Override
-    public void SignUp() {
-        startActivity(new Intent(this, RegisterActivity.class));
+    public void Login() {
+        startActivity(new Intent(this, LoginActivity.class));
         finish();
     }
 

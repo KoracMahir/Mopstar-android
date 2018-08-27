@@ -4,4 +4,5 @@
     <color name="colorPrimaryDark">#1aa8ff</color>
     <color name="colorAccent">#1aa8ff</color>
     <color name="login">#1aa8ff</color>
+    <color name="transp">#009aacb7</color>
 </resources>

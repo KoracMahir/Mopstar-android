@@ -1,5 +1,7 @@
 package com.mop.korac.mopstar.login;
 
+import com.mop.korac.mopstar.R;
+
 public class LoginPresenter implements LoginInteractor.OnLoginFinishedListener {
 
     private LoginView loginView;
