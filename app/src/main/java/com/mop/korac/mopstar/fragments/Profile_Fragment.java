@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.mop.korac.mopstar.R;
+import com.mop.korac.mopstar.adapter.HomeAdapter;
 import com.mop.korac.mopstar.fragments.profile.Description_Fragment;
 import com.mop.korac.mopstar.fragments.profile.Posts_Fragment;
 import com.mop.korac.mopstar.interfacee.ApiInterface;

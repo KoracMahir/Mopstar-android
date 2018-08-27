@@ -26,6 +26,7 @@
         <activity
             android:name=".register.RegisterActivity"
             android:label="@string/title_activity_main" />
+        <activity android:name=".register.MoreInfoActivity"></activity>
     </application>
 
 </manifest>

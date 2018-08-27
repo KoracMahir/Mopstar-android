@@ -1,12 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e4e4e4"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:layout_marginTop="24dp"
         android:layout_height="wrap_content"
-        android:text="Group Fragment"
-        android:textSize="30sp"
-        android:layout_centerInParent="true"/>
-</RelativeLayout >
+        android:textSize="20sp"
+        android:textColor="#3e3f51"
+        android:lineSpacingExtra="-4sp"
+        android:layout_marginLeft="36dp"
+        android:text="Groups You Manage"
+        />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/grouprecyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="238dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:layout_marginTop="32dp"
+        android:textSize="20sp"
+        android:textColor="#3e3f51"
+        android:lineSpacingExtra="-4sp"
+        android:layout_marginLeft="36dp"
+        android:text="Your Groups"
+        />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/yourgroups"
+        android:layout_width="match_parent"
+        android:layout_height="238dp"/>
+    </LinearLayout >
+</ScrollView>

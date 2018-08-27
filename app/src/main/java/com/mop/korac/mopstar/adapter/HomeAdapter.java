@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.mop.korac.mopstar.Home.FeedData;
 import com.mop.korac.mopstar.R;
 
 import org.w3c.dom.Text;
@@ -29,7 +28,7 @@ public class HomeAdapter  extends RecyclerView.Adapter{
 
     @Override
     public int getItemCount() {
-        return FeedData.imagespath.length;
+        return com.mop.korac.mopstar.Home.FeedData.imagespath.length;
     }
 
     private class HomeViewHolder extends RecyclerView.ViewHolder {
@@ -45,10 +44,10 @@ public class HomeAdapter  extends RecyclerView.Adapter{
             postcontent = (TextView) itemView.findViewById(R.id.postcontent);
         }
         public void bindView(int position){
-            profileimage.setImageResource(FeedData.imagespath[position]);
-            profilename.setText(FeedData.names[position]);
-            timeago.setText(FeedData.timesago[position]);
-            postcontent.setText(FeedData.postscontent[position]);
+            profileimage.setImageResource(com.mop.korac.mopstar.Home.FeedData.imagespath[position]);
+            profilename.setText(com.mop.korac.mopstar.Home.FeedData.names[position]);
+            timeago.setText(com.mop.korac.mopstar.Home.FeedData.timesago[position]);
+            postcontent.setText(com.mop.korac.mopstar.Home.FeedData.postscontent[position]);
         }
         public void onClick(View view){
 

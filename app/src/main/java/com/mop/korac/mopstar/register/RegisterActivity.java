@@ -94,7 +94,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if(response.isSuccessful()){
-                    Intent barIntent = new Intent(getApplicationContext(), MainActivity.class);
+                    Intent barIntent = new Intent(getApplicationContext(), MoreInfoActivity.class);
                     startActivity(barIntent);
                 }
             }
