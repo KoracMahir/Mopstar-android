@@ -8,7 +8,6 @@ public interface MainView {
 
     void hideProgress();
 
-    void setItems(List<String> items);
 
     void showMessage(String message);
 }

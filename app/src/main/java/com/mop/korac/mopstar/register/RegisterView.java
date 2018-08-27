@@ -5,8 +5,6 @@ public interface RegisterView {
 
     void hideProgress();
 
-    void NameError();
-
     void setUsernameError();
 
     void setPasswordError();
@@ -14,6 +12,4 @@ public interface RegisterView {
     void navigateToHome();
 
     void Login();
-
-    void Close();
 }

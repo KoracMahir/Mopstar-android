@@ -1,56 +1,61 @@
 package com.mop.korac.mopstar.register;
 
-
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
-import com.mop.korac.mopstar.BaseActivity;
 import com.mop.korac.mopstar.R;
+import com.mop.korac.mopstar.interfacee.ApiInterface;
 import com.mop.korac.mopstar.login.LoginActivity;
+import com.mop.korac.mopstar.login.LoginInteractor;
+import com.mop.korac.mopstar.login.LoginPresenter;
+import com.mop.korac.mopstar.login.LoginView;
 import com.mop.korac.mopstar.main.MainActivity;
+import com.mop.korac.mopstar.models.TokenModel;
+import com.mop.korac.mopstar.models.UserModel;
+import com.mop.korac.mopstar.service.ApiClient;
 
-public class RegisterActivity extends BaseActivity implements RegisterView {
-    Button button;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class RegisterActivity extends AppCompatActivity implements RegisterView {
+
     private ProgressBar progressBar;
-    private EditText name;
     private EditText username;
     private EditText password;
     private RegisterPresenter presenter;
 
+    Button button;
+    Button log;
     @Override
-    public void onAttach(){
-        super.onAttach();
-    }
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
         progressBar = findViewById(R.id.progress);
-        name = findViewById(R.id.name);
-        username = findViewById(R.id.username);
-        password = findViewById(R.id.password);
-        findViewById(R.id.button).setOnClickListener(v -> validateCredentials());
 
-        presenter = new RegisterPresenter(this, new RegisterIntegrator());
-
-        button = findViewById(R.id.log);
+        button = findViewById(R.id.button);
+        log = findViewById(R.id.log);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Login();
+                navigateToHome();
             }
         });
-        button = findViewById(R.id.close);
-        button.setOnClickListener(new View.OnClickListener() {
+        log.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Login();
+                Intent barIntent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(barIntent);
             }
         });
+
+        presenter = new RegisterPresenter(this, new RegisterInteractor());
     }
 
     @Override
@@ -70,11 +75,6 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
     }
 
     @Override
-    public void NameError() {
-        name.setError(getString(R.string.empty_error));
-    }
-
-    @Override
     public void setUsernameError() {
         username.setError(getString(R.string.empty_error));
     }
@@ -84,23 +84,34 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
         password.setError(getString(R.string.empty_error));
     }
 
+
     @Override
     public void navigateToHome() {
-        startActivity(new Intent(this, MainActivity.class));
-        finish();
+        username = findViewById(R.id.name);
+        password = findViewById(R.id.pass);
+        ApiInterface apiInterface = ApiClient.GetApiClient().create(ApiInterface.class);
+        apiInterface.registerWithCredentials(new UserModel(username.getText().toString(), password.getText().toString())).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if(response.isSuccessful()){
+                    Intent barIntent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(barIntent);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
     }
     @Override
     public void Login() {
         startActivity(new Intent(this, LoginActivity.class));
         finish();
     }
-    @Override
-    public void Close() {
-        startActivity(new Intent(this, LoginActivity.class));
-        finish();
-    }
 
     private void validateCredentials() {
-        presenter.validateCredentials(name.getText().toString(),username.getText().toString(), password.getText().toString());
+        presenter.validateCredentials(username.getText().toString(), password.getText().toString());
     }
 }

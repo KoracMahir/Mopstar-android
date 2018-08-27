@@ -1,11 +1,12 @@
-package com.mop.korac.mopstar.login;
+package com.mop.korac.mopstar.register;
 
 import android.os.Handler;
 import android.text.TextUtils;
 
-public class LoginInteractor {
+import com.mop.korac.mopstar.register.RegisterInteractor;
 
-    interface OnLoginFinishedListener {
+public class RegisterInteractor {
+    interface OnRegisterFinishedListener {
         void onUsernameError();
 
         void onPasswordError();
@@ -13,7 +14,7 @@ public class LoginInteractor {
         void onSuccess();
     }
 
-    public void login(final String username, final String password, final OnLoginFinishedListener listener) {
+    public void login(final String username, final String password, final RegisterInteractor.OnRegisterFinishedListener listener) {
         // Mock login. I'm creating a handler to delay the answer a couple of seconds
         new Handler().postDelayed(() -> {
             if (TextUtils.isEmpty(username)) {

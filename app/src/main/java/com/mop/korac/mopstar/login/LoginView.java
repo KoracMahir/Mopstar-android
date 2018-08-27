@@ -11,4 +11,5 @@ public interface LoginView {
 
     void navigateToHome();
 
+    void SignUp();
 }

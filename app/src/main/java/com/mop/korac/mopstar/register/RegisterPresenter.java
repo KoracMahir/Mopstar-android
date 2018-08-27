@@ -1,44 +1,44 @@
 package com.mop.korac.mopstar.register;
 
-public class RegisterPresenter implements RegisterIntegrator.OnRegisterFinishedListener {
+import com.mop.korac.mopstar.register.RegisterInteractor;
+import com.mop.korac.mopstar.register.RegisterView;
+
+public class RegisterPresenter implements RegisterInteractor.OnRegisterFinishedListener {
 
     private RegisterView registerView;
-    private RegisterIntegrator registerIntegrator;
+    private RegisterInteractor registerInteractor;
 
-    RegisterPresenter(RegisterView registerView, RegisterIntegrator registerInteractor) {
+    RegisterPresenter(RegisterView registerView, RegisterInteractor registerInteractor) {
         this.registerView = registerView;
-        this.registerIntegrator = registerInteractor;
+        this.registerInteractor = registerInteractor;
     }
 
-    public void validateCredentials(String name,String username, String password) {
+    public void validateCredentials(String username, String password) {
+        if (registerView != null) {
             registerView.showProgress();
+        }
 
-        registerIntegrator.register(name, username, password, this);
+        registerInteractor.login(username, password, this);
     }
 
     public void onDestroy() {
         registerView = null;
     }
-    @Override
-    public void NameError1() {
-        registerView.NameError();
-        registerView.hideProgress();
-    }
 
     @Override
-    public void onUsernameError1() {
+    public void onUsernameError() {
         registerView.setUsernameError();
         registerView.hideProgress();
     }
 
     @Override
-    public void onPasswordError1() {
+    public void onPasswordError() {
         registerView.setPasswordError();
         registerView.hideProgress();
     }
 
     @Override
-    public void onSuccess1() {
+    public void onSuccess() {
         registerView.navigateToHome();
     }
 }
