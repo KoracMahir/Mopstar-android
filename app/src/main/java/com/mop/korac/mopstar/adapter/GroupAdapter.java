@@ -45,5 +45,6 @@ public class GroupAdapter  extends RecyclerView.Adapter{
 
         }
     }
+
 }
 
