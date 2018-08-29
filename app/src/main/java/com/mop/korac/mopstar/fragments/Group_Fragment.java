@@ -32,4 +32,5 @@ public class Group_Fragment extends Fragment {
         return view;
 
     }
+
 }
