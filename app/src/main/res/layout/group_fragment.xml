@@ -11,17 +11,27 @@
     android:background="#e4e4e4"
     android:orientation="vertical">
 
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:layout_marginTop="24dp"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textColor="#3e3f51"
-        android:lineSpacingExtra="-4sp"
-        android:layout_marginLeft="36dp"
-        android:text="Groups You Manage"
-        />
+        android:layout_margin="24dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="13dp"
+            android:layout_height="12dp"
+            android:src="@drawable/star"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="8dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="#3e3f51"
+            android:lineSpacingExtra="-4sp"
+            android:text="Groups You Manage"
+            />
+    </LinearLayout>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/grouprecyclerview"
         android:layout_width="match_parent"
