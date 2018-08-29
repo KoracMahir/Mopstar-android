@@ -96,8 +96,10 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
                 if(response.isSuccessful()){
                     String token = response.body().getTokenString();
                     Intent barIntent = new Intent(getApplicationContext(), MainActivity.class);
-                    SharedPreferences preferences = getSharedPreferences("myPrefs", MODE_PRIVATE);
-                    preferences.edit().putString("token", token).commit();
+                    SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putString("token", token);
+                    editor.commit();
                     startActivity(barIntent);
                 }else{
                     Toast.makeText(LoginActivity.this, "Wrong Username or Password", Toast.LENGTH_SHORT).show();
