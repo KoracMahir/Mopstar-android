@@ -11,5 +11,7 @@ public interface RegisterView {
 
     void navigateToHome();
 
+
     void Login();
+
 }

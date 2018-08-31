@@ -1,14 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#f3f7fa"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycleview"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+        android:layout_height="56dp"
+        android:background="@color/colorAccent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
-</RelativeLayout >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:fontFamily="sans-serif-medium"
+            android:textStyle="normal"
+            android:textColor="#ffffff"
+            android:layout_weight="1"
+            android:layout_marginLeft="20dp"
+            android:text="Feed"
+            />
+        <Button
+            android:id="@+id/search"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+
+            android:layout_marginRight="40dp"
+            android:background="@drawable/search"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/upload"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:hint="What’s on your mind?"
+            android:inputType="text"
+            android:layout_margin="20dp"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/postc"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_margin="20dp"
+            android:text="POST"
+            android:textColor="@color/colorAccent"
+            android:background="@drawable/background_border"
+            android:backgroundTint="@color/colorAccent"/>
+    </LinearLayout>
+    <!--<android.support.v7.widget.RecyclerView-->
+        <!--android:id="@+id/recycleview"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--app:layoutManager="android.support.v7.widget.LinearLayoutManager" />-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="400dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="work in progress"
+            android:textSize="30dp"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+</LinearLayout >

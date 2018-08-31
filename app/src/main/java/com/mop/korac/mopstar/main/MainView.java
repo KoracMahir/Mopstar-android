@@ -9,5 +9,6 @@ public interface MainView {
     void hideProgress();
 
 
+
     void showMessage(String message);
 }

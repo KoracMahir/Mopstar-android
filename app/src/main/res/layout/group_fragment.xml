@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    >
 
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -52,4 +57,15 @@
         android:layout_width="match_parent"
         android:layout_height="238dp"/>
     </LinearLayout >
-</ScrollView>
+
+    </ScrollView>
+    <Button
+        android:id="@+id/addbtn"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:background="@drawable/addbtn"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"/>
+</RelativeLayout>

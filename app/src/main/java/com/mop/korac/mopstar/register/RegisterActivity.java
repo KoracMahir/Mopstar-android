@@ -1,6 +1,7 @@
 package com.mop.korac.mopstar.register;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -89,6 +90,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
     public void navigateToHome() {
         username = findViewById(R.id.name);
         password = findViewById(R.id.pass);
+        SharedPreferences pref = RegisterActivity.this.getSharedPreferences("MyPref", MODE_PRIVATE);
         ApiInterface apiInterface = ApiClient.GetApiClient().create(ApiInterface.class);
         apiInterface.registerWithCredentials(new UserModel(username.getText().toString(), password.getText().toString())).enqueue(new Callback<ResponseBody>() {
             @Override
@@ -96,12 +98,19 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
                 if(response.isSuccessful()){
                     Intent barIntent = new Intent(getApplicationContext(), MoreInfoActivity.class);
                     startActivity(barIntent);
+
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putString("loginuser", username.getText().toString());
+                    editor.putString("loginpass", password.getText().toString());
+                    editor.commit();
+                    Toast.makeText(RegisterActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 }
+
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-
+                Toast.makeText(RegisterActivity.this, "FaiL!", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -114,4 +123,5 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
     private void validateCredentials() {
         presenter.validateCredentials(username.getText().toString(), password.getText().toString());
     }
+
 }

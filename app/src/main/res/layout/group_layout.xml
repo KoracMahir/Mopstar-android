@@ -5,7 +5,7 @@ android:layout_height="wrap_content"
 android:layout_marginLeft="8dp"
 xmlns:tools="http://schemas.android.com/tools"
 android:orientation="vertical"
-android:background="@drawable/background_border">
+android:background="@color/white">
 
 <ImageView
     android:id="@+id/groupimage"

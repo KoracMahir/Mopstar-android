@@ -2,26 +2,31 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" 
     android:layout_height="wrap_content"
+    android:background="#f3f7fa"
     android:orientation="vertical">
 
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="140dp"
         android:layout_marginTop="20dp">
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profileimg"
             android:layout_width="112dp"
             android:layout_height="112dp"
             android:layout_centerInParent="true"
             android:src="@drawable/boy2"/>
 
-        <ImageButton
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+        <Button
+            android:id="@+id/logout"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
-            android:background="@drawable/gear"
             android:layout_margin="20dp"/>
 
 
@@ -133,6 +138,70 @@
                 android:layout_marginTop="9dp"
                 android:text="23"
                 />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/greyish"
+                android:lineSpacingExtra="0sp"
+                android:layout_gravity="start"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="16dp"
+                android:text="Photos"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/azure"
+                android:lineSpacingExtra="2sp"
+                android:gravity="end"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_alignParentRight="true"
+                android:text="See All"
+                />
+        </RelativeLayout>
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="101dp"
+            android:layout_margin="16dp">
+            <ImageView
+                android:id="@+id/photo1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitCenter"
+                android:src="@drawable/boy"
+                android:layout_weight="1"/>
+            <ImageView
+                android:id="@+id/photo2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/boy2"
+                android:scaleType="fitCenter"
+                android:layout_weight="1"/>
+            <ImageView
+                android:id="@+id/photo3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/boy3"
+                android:scaleType="fitCenter"
+                android:layout_weight="1"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

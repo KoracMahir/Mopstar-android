@@ -13,14 +13,19 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.gson.JsonElement;
 import com.mop.korac.mopstar.R;
 import com.mop.korac.mopstar.interfacee.ApiInterface;
 import com.mop.korac.mopstar.main.MainActivity;
+import com.mop.korac.mopstar.models.ProfileModel;
 import com.mop.korac.mopstar.models.TokenModel;
 import com.mop.korac.mopstar.models.UserModel;
 import com.mop.korac.mopstar.register.RegisterActivity;
 import com.mop.korac.mopstar.service.ApiClient;
 
+import org.json.JSONObject;
+
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -56,6 +61,13 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         });
 
         presenter = new LoginPresenter(this, new LoginInteractor());
+    }
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
     @Override
@@ -95,10 +107,16 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
             public void onResponse(Call<TokenModel> call, Response<TokenModel> response) {
                 if(response.isSuccessful()){
                     String token = response.body().getTokenString();
-                    Intent barIntent = new Intent(getApplicationContext(), MainActivity.class);
+                    String id = response.body().getProfileModel().getId();
+                    String username = response.body().getProfileModel().getUsername();
+                    String imgurl = response.body().getProfileModel().getPhotourl();
+                    Intent barIntent = new Intent(LoginActivity.this, MainActivity.class);
                     SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
                     SharedPreferences.Editor editor = pref.edit();
                     editor.putString("token", token);
+                    editor.putString("id", id);
+                    editor.putString("username", username);
+                    editor.putString("imgurl", imgurl);
                     editor.commit();
                     startActivity(barIntent);
                 }else{
@@ -108,7 +126,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
             @Override
             public void onFailure(Call<TokenModel> call, Throwable t) {
-
+                Toast.makeText(LoginActivity.this, ""+t, Toast.LENGTH_SHORT).show();
             }
         });
     }

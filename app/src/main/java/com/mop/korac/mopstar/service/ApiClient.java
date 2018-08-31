@@ -2,6 +2,7 @@ package com.mop.korac.mopstar.service;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.mop.korac.mopstar.models.ProfileModel;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
