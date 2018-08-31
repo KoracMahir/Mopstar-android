@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#1aa8ff</color>
-    <color name="colorPrimaryDark">#1aa8ff</color>
+    <color name="colorPrimaryDark">#177ab6</color>
     <color name="colorAccent">#1aa8ff</color>
     <color name="login">#1aa8ff</color>
     <color name="transp">#009aacb7</color>
+    <color name="white">#ffffff</color>
+    <color name="charcoal_grey">#3e3f51</color>
+    <color name="greyish">#a7a7a7</color>
+    <color name="grey">#d1d1d1</color>
+    <color name="azure">#1aa8ff</color>
+    <color name="orange">#ff4f1a</color>
+    <color name="green">#25ff1a</color>
 </resources>

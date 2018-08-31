@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:background="#f3f7fa"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
     android:padding="8dp">
@@ -8,7 +9,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/background_border">
+        android:background="@color/white">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -20,12 +21,13 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/profileimage"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginLeft="24dp"
                     android:layout_marginTop="24dp"
+
                     android:src="@drawable/profile_icon" />
 
                 <LinearLayout

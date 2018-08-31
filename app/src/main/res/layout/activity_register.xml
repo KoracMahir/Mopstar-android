@@ -71,7 +71,7 @@
                 android:background="@color/login"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:text="Sing Up" />
+                android:text="Sign Up" />
 
             <ProgressBar
                 android:id="@+id/progress"
